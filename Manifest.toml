@@ -2,7 +2,7 @@
 
 julia_version = "1.10.2"
 manifest_format = "2.0"
-project_hash = "c7a6380959c31045b64f5a8b8c259c3f4852d698"
+project_hash = "da566d0bb0a5b7c71b08208452cccd57c5e578ef"
 
 [[deps.Accessors]]
 deps = ["CompositionsBase", "ConstructionBase", "Dates", "InverseFunctions", "LinearAlgebra", "MacroTools", "Markdown", "Test"]
@@ -738,7 +738,7 @@ uuid = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
 
 [[deps.VKCComputing]]
 deps = ["Airtable", "BiobakeryUtils", "CSV", "Chain", "DataFrames", "Dates", "Dictionaries", "JSON3", "Preferences", "TestItems", "ThreadsX", "TimeZones"]
-git-tree-sha1 = "eabbf24eea3bf4f0e3dd02d692403003c146f023"
+path = "../VKCComputing.jl"
 uuid = "329a1d7f-a79a-43b8-8671-feb503123859"
 version = "0.3.0"
 

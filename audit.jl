@@ -104,7 +104,19 @@ VKCComputing.audit_update_remote!(
 	dryrun=true
 )
 
-aws_files.source .= "aws"
-local_files.source .= "grace"
+aws_files.from_aws .= true
+good_files.from_local .= true
 
+allfiles = outerjoin(
+	select(aws_files, "file", "path"=> "aws_path", "size"=> "aws_size", "mod"=> "aws_mod", "from_aws"),
+	select(good_files, "file", "path"=> "local_path", "size"=> "local_size", "mod"=> "local_mod", "from_local");
+	on="file"
+)
+
+allfiles.from_aws .= coalesce.(allfiles.from_aws, false)
+allfiles.from_local .= coalesce.(allfiles.from_local, false)
+
+@assert all(subset(allfiles, "from_local"=> identity).from_aws)
+allfiles.aws_size = parse.(Int, allfiles.aws_size)
+findall(row-> row.aws_size != row.local_size, eachrow(subset(allfiles, "from_local"=> identity)))
 
